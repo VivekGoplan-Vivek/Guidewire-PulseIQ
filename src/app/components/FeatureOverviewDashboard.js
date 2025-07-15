@@ -118,12 +118,12 @@ export default function FeatureOverviewDashboard({ results = null }) {
               <div style={{ display: 'flex', alignItems: 'center', marginLeft: 16 }}>
                 <div
                   className={
-                    feature.status === 'At Risk'
+                    feature.status === 'At Risk' || feature.status === 'At-risk'
                       ? `${styles.statusBadge} ${styles.atRisk}`
                       : styles.statusBadge
                   }
                   style={
-                    feature.status === 'At Risk'
+                    feature.status === 'At Risk' || feature.status === 'At-risk'
                       ? {
                           background: '#ef4444',
                           color: '#fff',
@@ -185,7 +185,10 @@ export default function FeatureOverviewDashboard({ results = null }) {
                     {feature.actions.map((action, i) => (
                       <div className={styles.actionCard} key={i}>
                         <div style={{display:'flex',alignItems:'center',gap:8}}>
+                          <div style={{width:'4%'}}>
                           <span style={{width:8,height:8,borderRadius:'50%',background:'#00739d',display:'inline-block',marginRight:8}}></span>
+                            </div>
+                          
                           <span className={styles.actionTitle}>{action.title}</span>
                         </div>
                       </div>

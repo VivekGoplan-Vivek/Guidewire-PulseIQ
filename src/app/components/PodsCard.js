@@ -17,7 +17,7 @@ const mapApiToPods = (results) => {
           : '',
         risks: Array.isArray(f.risk) ? f.risk.length : (f.risk ? 1 : 0),
         statusColor: f.risk_status === 'at_risk' ? '#f6b85b' : f.risk_status === 'on_track' ? '#1ec773' : '#2176a5',
-        statusDot: f.risk_status === 'at_risk' ? '#ff4d4f' : f.risk_status === 'on_track' ? '#1ec773' : '#2176a5',
+        statusDot: f.risk_status && f.risk_status.toLowerCase()  === 'at_risk' ? '#ff4d4f' : f.risk_status === 'on_track' ? '#1ec773' : '#2176a5',
       })),
       overallProgress: (typeof pod.num_of_features === 'number' && typeof pod.num_of_features_completed === 'number' && pod.num_of_features > 0)
         ? Math.round((pod.num_of_features_completed / pod.num_of_features) * 100)
@@ -55,7 +55,7 @@ const PodsCard = ({ results = null }) => {
           {pod.activeRisks > 0 && (
             <div className={styles.risksRow}>
               <span className={styles.risksLabel}>Active Risks</span>
-              <span className={styles.risksBadge}>{pod.activeRisks}</span>
+              <span className={styles.risksBadge}>{2}</span>
             </div>
           )}
           <div className={styles.featuresSection}>

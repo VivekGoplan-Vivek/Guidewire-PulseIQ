@@ -147,8 +147,8 @@ export default function Home() {
                   num_of_tasks_completed: f.num_of_tasks_completed,
                   jira_url: f.jira_url,
                   status: f.risk_status,
-                  statusColor: f.status === 'closed' ? '#1ec773' : f.status === 'in_progress' ? '#5b8df6' : f.status === 'at_risk' ? '#ef4444' : '#5b8df6',
-                  statusDot: f.risk_status === 'at_risk' ? '#ef4444' : f.risk_status === 'on_track' ? '#1ec773' : '#2176a5',
+                  statusColor: f.status === 'closed' ? '#1ec773' : f.status === 'in_progress' ? '#5b8df6' : (f.status && f.status.toLowerCase() === 'at_risk') ? '#ef4444' : '#5b8df6',
+                  statusDot: f.risk_status && f.risk_status.toLowerCase() === 'at_risk' ? '#ef4444' : (f.risk_status && f.risk_status.toLowerCase() === 'on_track' ? '#1ec773' : '#2176a5'),
                 })) : []}
               />
             )}

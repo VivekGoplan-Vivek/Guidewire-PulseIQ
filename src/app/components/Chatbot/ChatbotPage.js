@@ -25,13 +25,65 @@ const SAMPLE_RESPONSE =
   '4. **Coordination**: Continue coordination with the Control Plane team to ensure seamless integration and data flow for the new tiers.\n' +
   '5. **Review and Feedback**: Gather feedback from stakeholders and make necessary adjustments to the implementation and documentation.';
 
-const getLocalStorageKey = (featureId) => featureId ? `pulseiq_chat_messages_${featureId}` : 'pulseiq_chat_messages';
-const DEFAULT_WELCOME = [
-  { sender: 'bot', text: "Hi! I'm PulseIQ. Ask me anything about Master Features,Sub Features, Jira Epics, or Risk Analysis." }
+// 1. Add sample questions and responses
+const SAMPLE_QA = [
+  {
+    question: "Can we mitigate the risk for this master feature?",
+    response: 'To mitigate the risks associated with the master feature \"Larger CDA Data pipelines with increased options,\" here are some steps that can be taken:\n\n1. **Ensure Timely Completion of Part II**:\n   - Break down the remaining tasks into smaller, manageable parts with clear deadlines.\n   - Allocate additional resources if necessary to ensure the tasks are completed on time.\n   - Conduct regular progress check-ins to ensure the team is on track.\n\n2. **CDPO Integration and Testing**:\n   - Prioritize the integration and testing tasks to ensure they are not delayed.\n   - Collaborate closely with the CDPO team to align on timelines and resource availability.\n   - Set up a dedicated testing environment to avoid any last-minute issues.\n\n3. **Monitor Dependencies**:\n   - Identify any dependencies on other teams or components and ensure they are addressed early.\n   - Establish clear communication channels with dependent teams to quickly resolve any issues.\n\n4. **Risk Management**:\n   - Continuously monitor the project for any emerging risks and address them promptly.\n   - Have contingency plans in place for critical tasks that might face delays.\n\n5. **Stakeholder Communication**:\n   - Keep all stakeholders informed about the progress and any potential risks.\n   - Provide regular updates and involve them in decision-making processes to ensure alignment.\n\n6. **Testing and Validation**:\n   - Conduct thorough testing to validate the changes and ensure they meet performance benchmarks.\n   - Use automated testing tools to speed up the testing process and ensure coverage.\n\nBy focusing on these areas, the team can mitigate the risks and ensure successful completion of the master feature.'
+  },
+  {
+    question: "What are the current risks?",
+    response: 'Current risks include possible misconfiguration if documentation and UI do not clearly differentiate new enhanced tiers from existing ones.'
+  },
+  {
+    question: "What are the dependencies?",
+    response: 'The project depends on accurate identification of PPP customers using the is_PPP flag in Helios and coordination with the Control Plane.'
+  },
+  {
+    question: "What features are in progress?",
+    response: 'CDP-54160: Technical design and implementation for Extra Large CDA pipelines. CDP-51710: Development for Extra Large pipelines for CDA self-service is completed.'
+  },
+  {
+    question: "What are the next steps?",
+    response: 'Next steps: Update documentation, finalize UI changes, conduct testing, coordinate with Control Plane, and gather feedback.'
+  },
+  {
+    question: "Who are the stakeholders?",
+    response: 'Stakeholders include SRE users, Control Plane team, and Guidewire Home PPP program tenants.'
+  },
+  {
+    question: "What is the acceptance criteria?",
+    response: 'Acceptance criteria are being discussed and updated based on recent requirements and user journey feedback.'
+  },
+  {
+    question: "What documentation needs updating?",
+    response: 'Internal documentation must be updated to include new enhanced tiers and inform SRE users about the provisioning process.'
+  },
+  {
+    question: "What testing is required?",
+    response: 'Thorough testing is required to verify the provisioning process for enhanced tiers and ensure users see the correct pipe size on the UI.'
+  },
+  {
+    question: "What is the user interface change?",
+    response: 'The UI will be updated to reflect new CDA tiers, visible only to eligible SRE users.'
+  }
 ];
 
+const DEFAULT_FALLBACK = 'Sorry, I do not have an answer for that. Please try asking about Master Features, Sub Features, Jira Epics, or Risk Analysis.';
+
+const getLocalStorageKey = (featureId) => featureId ? `pulseiq_chat_messages_${featureId}` : 'pulseiq_chat_messages';
+const DEFAULT_WELCOME = [
+  { sender: 'bot', text: "Hi! I'm Pulse IQ. Ask me anything about Master Features,Sub Features, Jira Epics, or Risk Analysis." }
+];
+
+const findSampleResponse = (userInput) => {
+  // Simple case-insensitive match; can be improved with fuzzy matching
+  const normalized = userInput.trim().toLowerCase();
+  const found = SAMPLE_QA.find(qa => qa.question.toLowerCase() === normalized);
+  return found ? found.response : null;
+};
+
 const ChatbotPage = ({ results=null,onClose , featureId=null }) => {
-  // Load messages from localStorage or use default
   const [messages, setMessages] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem(getLocalStorageKey(featureId));
@@ -72,13 +124,19 @@ const ChatbotPage = ({ results=null,onClose , featureId=null }) => {
     setInput('');
     setTyping(true);
     setTimeout(() => {
-      setMessages(prev => [...prev, { sender: 'bot', text: SAMPLE_RESPONSE }]);
+      // Check for sample response
+      const sampleResp = findSampleResponse(userMessage.text);
+      setMessages(prev => [
+        ...prev,
+        { sender: 'bot', text: sampleResp || DEFAULT_FALLBACK }
+      ]);
       setTyping(false);
       // Call the API after the bot responds
       callYourApi(
         userMessage.text,
-        featureId,
-         results
+        // featureId,
+        getLocalStorageKey,
+        results
       );
     }, 1200);
   };
@@ -94,22 +152,14 @@ const ChatbotPage = ({ results=null,onClose , featureId=null }) => {
   }, [messages, typing]);
 
   useEffect(() => {
-    // Save messages to localStorage whenever they change
     if (typeof window !== 'undefined') {
       localStorage.setItem(getLocalStorageKey(featureId), JSON.stringify(messages));
     }
   }, [messages, featureId]);
 
-  useEffect(() => {
-    // On page reload/mount, clear the chat messages for the current featureId
-    if (typeof window !== 'undefined') {
-      // localStorage.removeItem(getLocalStorageKey(featureId));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
 
   useEffect(() => {
-    // When featureId changes, load messages for that feature or reset to welcome
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem(getLocalStorageKey(featureId));
       if (saved) {
@@ -118,7 +168,6 @@ const ChatbotPage = ({ results=null,onClose , featureId=null }) => {
         setMessages(DEFAULT_WELCOME);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [featureId]);
 
   return (
