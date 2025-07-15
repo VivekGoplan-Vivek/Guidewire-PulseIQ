@@ -121,7 +121,7 @@ export default function Home() {
               <rect x="42" y="10" width="6" height="12" rx="3" fill="#2176a5"/>
               <circle cx="45" cy="10" r="3" fill="#2176a5" className={animatedIconStyles.topCircle}/>
             </svg>
-            <div style={{marginTop:'1rem',color:'#2176a5',fontWeight:600,fontSize:'1.2rem',fontFamily:'Poppins, Arial, sans-serif',opacity:0.5}}>Smart Insights Powered by PulseIQ</div>
+            <div style={{marginTop:'1rem',color:'#2176a5',fontWeight:600,fontSize:'1.2rem',fontFamily:'Poppins, Arial, sans-serif',opacity:0.5}}>Smart Insights Powered by Pulse IQ</div>
           </div>
         )}
         {results && (

@@ -33,10 +33,10 @@ const ProgramIntelligenceHub = ({
                 <rect x="42" y="10" width="6" height="12" rx="3" fill="#2176a5"/>
                 <circle cx="45" cy="10" r="3" fill="#2176a5"/>
               </svg>
-              PulseIQ
+              Pulse IQ
             </span>
           </h1>
-          <div className={styles.subtitle}>AI-powered cross-pod visibility and risk detection</div>
+          <div className={styles.subtitle}>Real Time pulse check of a Program</div>
           
         </div>
         <div className={styles.searchSection}>

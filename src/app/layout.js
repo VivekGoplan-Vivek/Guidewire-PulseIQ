@@ -5,8 +5,8 @@ import "./globals.css";
 const PoppinsFont = Poppins({weight: ['100','200','300','400','500','600', '700'], subsets: ["latin"] });
 
 export const metadata = {
-  title: "AI Workflow Tracker",
-  description: "AI status Tracker",
+  title: "Pulse IQ",
+  description: "Real Time pulse check of a Program",
 };
 
 export default function RootLayout({ children }) {
