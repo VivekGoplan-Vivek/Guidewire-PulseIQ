@@ -103,7 +103,7 @@ export default function MasterFeatureOverviewDashboard({ results=null }) {
           {(results && results.master_feature && Array.isArray(results.master_feature.next_steps) ? results.master_feature.next_steps : actions).map((action, i) => (
             <div className={styles.actionCard} key={i}>
               <div style={{display:'flex',alignItems:'center',gap:8}}>
-                <span style={{width:8,height:8,borderRadius:'50%',background:'#00739d',display:'inline-block',marginRight:8,width:'3%'}}></span>
+                <span style={{width:8,height:8,borderRadius:'50%',background:'#00739d',display:'inline-block',marginRight:8,width:'12px',height:'12px'}}></span>
                 <span className={styles.actionTitle}>{action ? action : action}</span>
               </div>
               {/* <div className={styles.actionMeta} style={{marginTop:4}}>
