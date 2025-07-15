@@ -110,6 +110,7 @@
   height: 40px;
   width: 220px;
   transition: border 0.2s;
+  color: black;
 }
 
 .searchInput:focus {
