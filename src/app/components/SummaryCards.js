@@ -59,7 +59,7 @@ const SummaryCards = ({  results=null}) => {
     }
     if (card.title === 'At Risk' && results && Array.isArray(results.features)) {
       const riskCount = results.features.filter(f => f.risk && (Array.isArray(f.risk) ? f.risk.length > 0 : String(f.risk).trim() !== "")).length;
-      return { ...card, value: 2 };
+      return { ...card, value: riskCount };
     }
     if (card.title === 'Jira Epics' && results && results.master_feature && typeof results.master_feature.num_of_features === 'number') {
       return { ...card, value: results.master_feature.num_of_features };

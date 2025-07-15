@@ -55,7 +55,7 @@ const PodsCard = ({ results = null }) => {
           {pod.activeRisks > 0 && (
             <div className={styles.risksRow}>
               <span className={styles.risksLabel}>Active Risks</span>
-              <span className={styles.risksBadge}>{2}</span>
+              <span className={styles.risksBadge}>{pod.activeRisks}</span>
             </div>
           )}
           <div className={styles.featuresSection}>

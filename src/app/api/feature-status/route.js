@@ -504,7 +504,7 @@ export async function GET(request) {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    return Response.json(RESPONSE1);
+    return Response.json(mockResponse4);
   } catch (error) {
     console.error('Error fetching feature status:', error);
     return Response.json(
