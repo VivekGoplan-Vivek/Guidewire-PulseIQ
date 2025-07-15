@@ -1,0 +1,131 @@
+.commentsSection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #2176a5;
+}
+
+.commentsTitle {
+  color: #2176a5;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  opacity: 0.6;
+  padding-left: 20px;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.commentItem {
+  background: #2176a5;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(56, 135, 254, 0.08), 0 1.5px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 80%;
+}
+
+.commentItem:hover {
+  box-shadow: 0 4px 16px rgba(56, 135, 254, 0.16), 0 3px 12px rgba(0,0,0,0.08);
+  transform: translateY(-2px) scale(1.01);
+  background: #205080;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.commentAuthor {
+  color: #3887FE;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.commentTime {
+  color: #b8c7e0;
+  font-size: 12px;
+}
+
+.commentMessage {
+  color: #ecf0f1;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+  margin-bottom: 0;
+  flex: 1;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.statusBadge {
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.inprogress {
+  background: #f39c12;
+  color: #fff;
+}
+
+.completed {
+  background: #27ae60;
+  color: #fff;
+}
+
+.green {
+  background: #27ae60;
+  color: #fff;
+}
+
+.closed {
+  background: #27ae60;
+  color: #fff;
+}
+
+.todo {
+  background: #95a5a6;
+  color: #fff;
+}
+
+.blocked {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.red {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.subFeatureDetails {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(56, 135, 254, 0.3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.subFeatureResultWrapper :global(.resultsContainer) {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}

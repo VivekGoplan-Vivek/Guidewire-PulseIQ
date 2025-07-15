@@ -1,0 +1,77 @@
+.headerInfoWrapper{
+    text-align: center;
+    margin-top: 15px;
+
+}
+.headerSubTxt{
+    font-size: 10px;
+}
+.headerTxt{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  /* background: #eaf6fb; */
+  padding: 10px 24px;
+  /* border-bottom: 1px solid #b5d0e6; */
+  position: relative;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.logo {
+  height: 36px;
+  margin: 0 auto;
+  display: block;
+  position: static;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2176a5;
+  letter-spacing: 1px;
+  flex: 0 1 auto;
+  text-align: center;
+}
+
+.subtitle {
+  color: #b8c7e0; /* light gray-blue */
+  font-size: 0.95rem;
+  margin-top: 4px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
+}
+
+.headerTextGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.pulseIq {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #5b8df6 0%, #a17cf3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-left: 18px;
+  letter-spacing: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+@media (min-width: 768px) {
+    .headerInfoWrapper{
+        margin-top: 20px;
+    }
+}

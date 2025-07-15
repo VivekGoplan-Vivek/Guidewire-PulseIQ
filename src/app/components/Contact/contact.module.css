@@ -1,0 +1,40 @@
+.contactWrapper{
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+
+.contactInfo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+    /* margin-top: 12px; */
+}
+
+.contactInfo :hover{
+    color: #1501FF;
+    text-decoration: underline;
+}
+
+.contactImg{
+    height: 25px;
+    width: 25px;
+    object-fit: cover;
+}
+
+.contactText{
+    font-size: 14px;
+    font-weight: 600;
+    color: #918D8D;
+}
+
+.copyRightTxt{
+    text-align: center;
+    font-size: 8px;
+    margin-top: 20px;
+    opacity: 0.5;
+}

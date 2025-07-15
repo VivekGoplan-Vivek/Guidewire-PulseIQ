@@ -1,0 +1,276 @@
+.wrapper {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(90, 141, 246, 0.06);
+  padding: 32px 36px 36px 36px;
+  margin: 32px 0;
+}
+
+.collapsed {
+  padding: 4px 12px 2px 12px !important;
+  margin: 16px 0 !important;
+  box-shadow: none !important;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.featureTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.podLabel {
+  background: #ffffff;
+  color: #222;
+  font-size: 1rem;
+  /* padding: 3px 16px; */
+  border-radius: 16px;
+  font-weight: 500;
+  margin-left: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 13px;
+  padding: 0px 10px;
+}
+
+.metaRow {
+  color: #6b7280;
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+.statusBadge {
+  background: #e6f7e6;
+  color: #1a7f37;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  align-self: flex-start;
+}
+.statusBadge.danger, .statusBadge.atRisk {
+  background: #ef4444;
+  color: #fff;
+  animation: pulseRed 1.5s infinite;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+}
+@keyframes pulseRed {
+  0% { box-shadow: 0 0 0 0 rgba(239,68,68, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(239,68,68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239,68,68, 0); }
+}
+
+.progressBox {
+  background: #f7faff;
+  border-radius: 12px;
+  padding: 20px 28px 16px 28px;
+  margin-bottom: 32px;
+}
+
+.progressLabel {
+  font-weight: 600;
+  color: #222;
+  font-size: 1.1rem;
+}
+
+.progressSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progressBarBg {
+  background: #e5e7eb;
+  border-radius: 8px;
+  width: 100%;
+  height: 14px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.progressBarFill {
+  background: #00739d;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s;
+}
+
+.progressPercent {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  text-align: right;
+}
+
+.columns {
+  display: flex;
+  gap: 32px;
+}
+
+.leftCol, .rightCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionSubtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.riskCard {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-left: 4px solid rgb(248, 113, 113);
+  padding: 14px 18px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(90, 141, 246, 0.04);
+}
+
+.riskLevel {
+  background: #fde68a;
+  color: #b45309;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.riskLevel.medium {
+  background: #fde68a;
+  color: #b45309;
+}
+.riskLevel.low {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+.riskImpact {
+  color: #6b7280;
+  font-size: 0.98rem;
+}
+
+.dependencyCard {
+  background: #fff;
+  border-left: 4px solid #5b8df6;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(90, 141, 246, 0.04);
+}
+.dependencyName {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2px;
+}
+.dependencyMeta {
+  color: #6b7280;
+  font-size: 0.98rem;
+  margin-bottom: 2px;
+}
+.dependencyStatus {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.98rem;
+}
+.statusDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.actionCard {
+  background: linear-gradient(90deg, #e0e7ff 0%, #f7faff 100%);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(90, 141, 246, 0.04);
+}
+.actionTitle {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+}
+.actionMeta {
+  color: #6b7280;
+  font-size: 0.98rem;
+}
+
+.epicRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(90, 141, 246, 0.04);
+  padding: 10px 16px;
+  margin-bottom: 8px;
+}
+.epicLeft {
+  display: flex;
+  flex-direction: column;
+}
+.epicName {
+  font-weight: 600;
+  color: #222;
+}
+.epicMeta {
+  color: #6b7280;
+  font-size: 0.98rem;
+}
+.epicRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.epicKey {
+  background: #f7f7fa;
+  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 16px;
+  letter-spacing: 0.5px;
+}
+.epicPercent {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+}
+
+.progressUpdateCard {
+  border-left: 4px solid rgb(42, 126, 53) !important;
+} 

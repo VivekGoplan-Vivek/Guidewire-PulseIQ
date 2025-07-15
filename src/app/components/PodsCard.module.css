@@ -1,0 +1,184 @@
+.podsWrapper {
+  display: flex;
+  gap: 32px;
+  justify-content: flex-start;
+  margin: 32px 0;
+}
+
+.podCard {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(90, 141, 246, 0.06);
+  padding: 28px 28px 20px 28px;
+  min-width: 340px;
+  max-width: 360px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.podHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+  background: #f3f8fc;
+  border-radius: 10px;
+  padding: 10px 14px 8px 14px;
+}
+
+.podTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2176a5;
+  display: flex;
+  align-items: center;
+}
+
+.activeFeatures {
+  color: #6b7280;
+  font-weight: 400;
+  margin-bottom: 4px;
+  font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.progressLabel {
+  color: #222;
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+.progressPercent {
+  color: #222;
+  font-weight: 600;
+}
+
+.progressBarBg {
+  background: #f1f5f9;
+  border-radius: 8px;
+  width: 100%;
+  height: 10px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.progressBarFill {
+  background: #00739d;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s;
+}
+
+.risksRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.risksLabel {
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.risksBadge, .risksBadgeZero {
+  font-size: 0.85rem;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.risksBadge {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.risksBadgeZero {
+  background: #f1f5f9;
+  color: #6b7280;
+}
+
+.featuresSection {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 0 8px 0;
+  margin-top: 8px;
+}
+
+.featuresLabel {
+  color: rgb(107, 114, 128);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-left: 10px;
+  margin-bottom: 8px;
+  display: block;
+  font-size: .75rem;
+  line-height: 1rem;
+  letter-spacing: 1px;
+}
+
+.featurePillRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 10px 0 10px;
+  min-height: 28px;
+  justify-content: space-between;
+}
+
+.featurePill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(90, 141, 246, 0.04);
+  font-size: .75rem;
+  line-height: 1rem;
+  width: 90%;
+}
+
+.statusDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  background-clip: padding-box;
+  box-sizing: border-box;
+  border: 1.5px solid #e2e8f0;
+  /* Remove margin-left and vertical-align for perfect centering */
+  margin: 0;
+}
+
+.podIcon {
+  color: #2176a5;
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+} 
