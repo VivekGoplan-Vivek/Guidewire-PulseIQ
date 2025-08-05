@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "id": "User",
+      "label": "User",
+      "type": "dimension",
+      "fields": ["UserID", "Name", "Email", "CreatedAt"]
+    },
+    {
+      "id": "Order",
+      "label": "Order",
+      "type": "fact",
+      "fields": ["OrderID", "UserID", "TotalAmount", "OrderDate"]
+    },
+    {
+      "id": "Product",
+      "label": "Product",
+      "type": "dimension",
+      "fields": ["ProductID", "ProductName", "Price"]
+    },
+    {
+      "id": "OrderItem",
+      "label": "Order Item",
+      "type": "fact",
+      "fields": ["OrderItemID", "OrderID", "ProductID", "Quantity"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "User",
+      "to": "Order"
+    },
+    {
+      "from": "Order",
+      "to": "OrderItem"
+    },
+    {
+      "from": "Product",
+      "to": "OrderItem"
+    }
+  ]
+}
