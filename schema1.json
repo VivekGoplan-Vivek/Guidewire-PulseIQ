@@ -1,28 +1,14 @@
-
 {
   "name": "sample_db",
-  "description": "A sample database for Liam ERD test",
+  "description": "A sample database",
   "tables": [
     {
       "name": "users",
       "columns": [
-        {
-          "name": "id",
-          "type": "int",
-          "comment": "Primary key"
-        },
-        {
-          "name": "name",
-          "type": "varchar(100)",
-          "comment": "User's full name"
-        },
-        {
-          "name": "email",
-          "type": "varchar(255)",
-          "comment": "User email address"
-        }
+        { "name": "id", "type": "int", "comment": "User ID" },
+        { "name": "name", "type": "varchar", "comment": "User Name" },
+        { "name": "email", "type": "varchar", "comment": "User Email" }
       ],
-      "indexes": [],
       "constraints": {
         "primary": {
           "columns": ["id"]
@@ -32,23 +18,10 @@
     {
       "name": "orders",
       "columns": [
-        {
-          "name": "id",
-          "type": "int",
-          "comment": "Primary key"
-        },
-        {
-          "name": "user_id",
-          "type": "int",
-          "comment": "Foreign key to users"
-        },
-        {
-          "name": "order_date",
-          "type": "date",
-          "comment": "Date of the order"
-        }
+        { "name": "id", "type": "int", "comment": "Order ID" },
+        { "name": "user_id", "type": "int", "comment": "User ID (FK)" },
+        { "name": "total", "type": "decimal", "comment": "Order Total" }
       ],
-      "indexes": [],
       "constraints": {
         "primary": {
           "columns": ["id"]
