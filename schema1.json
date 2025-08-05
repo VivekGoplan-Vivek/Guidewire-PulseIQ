@@ -1,1 +1,68 @@
 
+{
+  "name": "sample_db",
+  "description": "A sample database for Liam ERD test",
+  "tables": [
+    {
+      "name": "users",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "comment": "Primary key"
+        },
+        {
+          "name": "name",
+          "type": "varchar(100)",
+          "comment": "User's full name"
+        },
+        {
+          "name": "email",
+          "type": "varchar(255)",
+          "comment": "User email address"
+        }
+      ],
+      "indexes": [],
+      "constraints": {
+        "primary": {
+          "columns": ["id"]
+        }
+      }
+    },
+    {
+      "name": "orders",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "comment": "Primary key"
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "comment": "Foreign key to users"
+        },
+        {
+          "name": "order_date",
+          "type": "date",
+          "comment": "Date of the order"
+        }
+      ],
+      "indexes": [],
+      "constraints": {
+        "primary": {
+          "columns": ["id"]
+        },
+        "foreign_keys": [
+          {
+            "columns": ["user_id"],
+            "references": {
+              "table": "users",
+              "columns": ["id"]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
