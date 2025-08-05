@@ -1,475 +1,170 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/k1LoW/tbls/schema/schema",
-  "$ref": "#/$defs/Schema",
-  "$defs": {
-    "Column": {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://nodeinfo.diaspora.software/ns/schema/2.0#",
+  "description": "NodeInfo schema version 2.0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "software",
+    "protocols",
+    "services",
+    "openRegistrations",
+    "usage",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "description": "The schema version, must be 2.0.",
+      "enum": ["2.0"]
+    },
+    "software": {
+      "description": "Metadata about server software in use.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
       "properties": {
         "name": {
+          "description": "The canonical name of this server software.",
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "version": {
+          "description": "The version of this server software.",
           "type": "string"
+        }
+      }
+    },
+    "protocols": {
+      "description": "The protocols supported on this server.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "activitypub",
+          "buddycloud",
+          "dfrn",
+          "diaspora",
+          "libertree",
+          "ostatus",
+          "pumpio",
+          "tent",
+          "xmpp",
+          "zot"
+        ]
+      }
+    },
+    "services": {
+      "description": "The third party sites this server can connect to via their application API.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inbound", "outbound"],
+      "properties": {
+        "inbound": {
+          "description": "The third party sites this server can retrieve messages from for combined display with regular traffic.",
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "enum": [
+              "atom1.0",
+              "gnusocial",
+              "imap",
+              "pnut",
+              "pop3",
+              "pumpio",
+              "rss2.0",
+              "twitter"
+            ]
+          }
         },
-        "type": {
-          "type": "string"
-        },
-        "nullable": {
-          "type": "boolean"
-        },
-        "default": {
-          "anyOf": [
-            {
-              "type": "string"
+        "outbound": {
+          "description": "The third party sites this server can publish messages to on the behalf of a user.",
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "enum": [
+              "atom1.0",
+              "blogger",
+              "buddycloud",
+              "diaspora",
+              "dreamwidth",
+              "drupal",
+              "facebook",
+              "friendica",
+              "gnusocial",
+              "google",
+              "insanejournal",
+              "libertree",
+              "linkedin",
+              "livejournal",
+              "mediagoblin",
+              "myspace",
+              "pinterest",
+              "pnut",
+              "posterous",
+              "pumpio",
+              "redmatrix",
+              "rss2.0",
+              "smtp",
+              "tent",
+              "tumblr",
+              "twitter",
+              "wordpress",
+              "xmpp"
+            ]
+          }
+        }
+      }
+    },
+    "openRegistrations": {
+      "description": "Whether this server allows open self-registration.",
+      "type": "boolean"
+    },
+    "usage": {
+      "description": "Usage statistics for this server.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["users"],
+      "properties": {
+        "users": {
+          "description": "statistics about the users of this server.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "total": {
+              "description": "The total amount of on this server registered users.",
+              "type": "integer",
+              "minimum": 0
             },
-            {
-              "type": "null"
+            "activeHalfyear": {
+              "description": "The amount of users that signed in at least once in the last 180 days.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "activeMonth": {
+              "description": "The amount of users that signed in at least once in the last 30 days.",
+              "type": "integer",
+              "minimum": 0
             }
-          ]
+          }
         },
-        "extra_def": {
-          "type": "string"
+        "localPosts": {
+          "description": "The amount of posts that were made by users that are registered on this server.",
+          "type": "integer",
+          "minimum": 0
         },
-        "labels": {
-          "$ref": "#/$defs/Labels"
-        },
-        "comment": {
-          "type": "string"
+        "localComments": {
+          "description": "The amount of comments that were made by users that are registered on this server.",
+          "type": "integer",
+          "minimum": 0
         }
-      },
-      "additionalProperties": false,
+      }
+    },
+    "metadata": {
+      "description": "Free form key value pairs for software specific values. Clients should not rely on any specific key present.",
       "type": "object",
-      "required": [
-        "name",
-        "type",
-        "nullable"
-      ]
-    },
-    "Constraint": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "def": {
-          "type": "string"
-        },
-        "table": {
-          "type": "string"
-        },
-        "referenced_table": {
-          "type": "string"
-        },
-        "columns": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "referenced_columns": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "comment": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "type",
-        "def",
-        "table"
-      ]
-    },
-    "Driver": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "database_version": {
-          "type": "string"
-        },
-        "meta": {
-          "$ref": "#/$defs/DriverMeta"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name"
-      ]
-    },
-    "DriverMeta": {
-      "properties": {
-        "current_schema": {
-          "type": "string"
-        },
-        "search_paths": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "dict": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "type": "object"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object"
-    },
-    "Enum": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "values": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "values"
-      ]
-    },
-    "Function": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "return_type": {
-          "type": "string"
-        },
-        "arguments": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "return_type",
-        "arguments",
-        "type"
-      ]
-    },
-    "Index": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "def": {
-          "type": "string"
-        },
-        "table": {
-          "type": "string"
-        },
-        "columns": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "comment": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "def",
-        "table",
-        "columns"
-      ]
-    },
-    "Label": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "virtual": {
-          "type": "boolean"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name"
-      ]
-    },
-    "Labels": {
-      "items": {
-        "$ref": "#/$defs/Label"
-      },
-      "type": "array"
-    },
-    "Relation": {
-      "properties": {
-        "table": {
-          "type": "string"
-        },
-        "columns": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "cardinality": {
-          "type": "string",
-          "enum": [
-            "zero_or_one",
-            "exactly_one",
-            "zero_or_more",
-            "one_or_more",
-            ""
-          ]
-        },
-        "parent_table": {
-          "type": "string"
-        },
-        "parent_columns": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "parent_cardinality": {
-          "type": "string",
-          "enum": [
-            "zero_or_one",
-            "exactly_one",
-            "zero_or_more",
-            "one_or_more",
-            ""
-          ]
-        },
-        "def": {
-          "type": "string"
-        },
-        "virtual": {
-          "type": "boolean"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "table",
-        "columns",
-        "parent_table",
-        "parent_columns",
-        "def"
-      ]
-    },
-    "Schema": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "desc": {
-          "type": "string"
-        },
-        "tables": {
-          "items": {
-            "$ref": "#/$defs/Table"
-          },
-          "type": "array"
-        },
-        "relations": {
-          "items": {
-            "$ref": "#/$defs/Relation"
-          },
-          "type": "array"
-        },
-        "functions": {
-          "items": {
-            "$ref": "#/$defs/Function"
-          },
-          "type": "array"
-        },
-        "enums": {
-          "items": {
-            "$ref": "#/$defs/Enum"
-          },
-          "type": "array"
-        },
-        "driver": {
-          "$ref": "#/$defs/Driver"
-        },
-        "labels": {
-          "$ref": "#/$defs/Labels"
-        },
-        "viewpoints": {
-          "$ref": "#/$defs/Viewpoints"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "tables"
-      ]
-    },
-    "Table": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "comment": {
-          "type": "string"
-        },
-        "columns": {
-          "items": {
-            "$ref": "#/$defs/Column"
-          },
-          "type": "array"
-        },
-        "indexes": {
-          "items": {
-            "$ref": "#/$defs/Index"
-          },
-          "type": "array"
-        },
-        "constraints": {
-          "items": {
-            "$ref": "#/$defs/Constraint"
-          },
-          "type": "array"
-        },
-        "triggers": {
-          "items": {
-            "$ref": "#/$defs/Trigger"
-          },
-          "type": "array"
-        },
-        "def": {
-          "type": "string"
-        },
-        "labels": {
-          "$ref": "#/$defs/Labels"
-        },
-        "referenced_tables": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "type",
-        "columns"
-      ]
-    },
-    "Trigger": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "def": {
-          "type": "string"
-        },
-        "comment": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "def"
-      ]
-    },
-    "Viewpoint": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "desc": {
-          "type": "string"
-        },
-        "labels": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "tables": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "distance": {
-          "type": "integer"
-        },
-        "groups": {
-          "items": {
-            "$ref": "#/$defs/ViewpointGroup"
-          },
-          "type": "array"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "desc"
-      ]
-    },
-    "ViewpointGroup": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "desc": {
-          "type": "string"
-        },
-        "labels": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "tables": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "color": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object",
-      "required": [
-        "name",
-        "desc"
-      ]
-    },
-    "Viewpoints": {
-      "items": {
-        "$ref": "#/$defs/Viewpoint"
-      },
-      "type": "array"
+      "minProperties": 0,
+      "additionalProperties": true
     }
   }
 }
