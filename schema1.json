@@ -1,38 +1,29 @@
 {
-  "name": "sample_db",
-  "description": "A sample database",
+  "name": "my_db",
+  "description": "Sample schema",
   "tables": [
     {
       "name": "users",
       "columns": [
-        { "name": "id", "type": "int", "comment": "User ID" },
-        { "name": "name", "type": "varchar", "comment": "User Name" },
-        { "name": "email", "type": "varchar", "comment": "User Email" }
+        { "name": "id", "type": "int" },
+        { "name": "username", "type": "varchar(255)" }
       ],
       "constraints": {
-        "primary": {
-          "columns": ["id"]
-        }
+        "primary": { "columns": ["id"] }
       }
     },
     {
       "name": "orders",
       "columns": [
-        { "name": "id", "type": "int", "comment": "Order ID" },
-        { "name": "user_id", "type": "int", "comment": "User ID (FK)" },
-        { "name": "total", "type": "decimal", "comment": "Order Total" }
+        { "name": "id", "type": "int" },
+        { "name": "user_id", "type": "int" }
       ],
       "constraints": {
-        "primary": {
-          "columns": ["id"]
-        },
+        "primary": { "columns": ["id"] },
         "foreign_keys": [
           {
             "columns": ["user_id"],
-            "references": {
-              "table": "users",
-              "columns": ["id"]
-            }
+            "references": { "table": "users", "columns": ["id"] }
           }
         ]
       }
